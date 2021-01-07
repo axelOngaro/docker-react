@@ -1,0 +1,16 @@
+language: generic
+
+sudo: required
+# use of docker requires root authorization
+
+services:
+  - docker
+#Travis will install an instance of docker into the container
+
+before_install:
+  - docker build -t axelOngaro/docker-react -f Dockerfile.dev .
+  #using a tag here to avoid passing around an id
+
+script:
+  #Here we'll put the commands related to the tests
+  - docker run -e CI=true USERNAME/docker-react npm run test
