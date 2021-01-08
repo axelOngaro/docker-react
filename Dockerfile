@@ -9,6 +9,7 @@ RUN npm run build
 #run phase
 #every FROM marks a new phase
 FROM nginx
+EXPOSE 80
 COPY --from=0 /app/build /usr/share/nginx/html
 #--from allows to point to the phase we want to copy from
 # 0 refers to the first phase
